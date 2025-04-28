@@ -54,7 +54,7 @@ printXorTable = do
     mapM_ printRow[(p,q) | p <- [True, False], q <- [True, False]]
  -- to get all combinations of p and q
     where
-        printRow (p,q) = putStrLn (show p ++ "|\t"++ show q "|  \t" ++ show(xor p q))
+        printRow (p,q) = putStrLn (show p ++ "|\t"++ show q ++ "|  \t" ++ show(xor p q))
  -- to print the xor truth table
 -- End of Q3
 
