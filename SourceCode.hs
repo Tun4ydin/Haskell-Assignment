@@ -44,16 +44,17 @@ substring xs (y:ys)
 --for xor
 xor :: Bool -> Bool -> Bool
 xor x y = x /= y
---my compiler did not let me use infixr 2 <+> or the symbolic representation <+>
+--my compiler did not let me use infixr 2 <+> or the symbolic
+--representation of <+>
 
 -- for printing Xor Table
 printXorTable:: IO ()
 printXorTable = do
-    putStrLn "p\tq\t p<+>q"
+    putStrLn "p|\t   q|\t  p<+>q"
     mapM_ printRow[(p,q) | p <- [True, False], q <- [True, False]]
  -- to get all combinations of p and q
     where
-        printRow (p,q) = putStrLn (show p ++ "\t" ++ show(xor p q))
+        printRow (p,q) = putStrLn (show p ++ "|\t"++ show q "|  \t" ++ show(xor p q))
  -- to print the xor truth table
 -- End of Q3
 
@@ -68,11 +69,11 @@ notEquiv p q = not (equiv p q)
 -- to print the -(p<->q) truth table
 printQ4Table :: IO ()
 printQ4Table = do
-    putStrLn "p\tq\tp <+> q\t -(p<->q)"
+    putStrLn "p|\t  q|\t  -(p<->q)"
     mapM_ printRow[(p,q) | p <- [True, False], q <- [True, False]] 
 -- to get all combinations of p and q
     where
-        printRow (p,q)= putStrLn(show p ++ "\t" ++ show (notEquiv p q)) 
+        printRow (p,q)= putStrLn(show p ++ "|\t" ++ show p ++ "|\t" ++ show (notEquiv p q)) 
 -- to print the negated equivalance truth table
 --End of Q3
 
@@ -89,11 +90,11 @@ printQ4Table = do
 
 printQ5Table :: IO ()
 printQ5Table = do
-    putStrLn "p\tq\tp<+>q\tp\t ((p<+>q)<+>q)"
+    putStrLn "p|\t  q|\t  ((p<+>q)<+>q)|\t  p"
     mapM_ printRow[(p,q) | p <- [True, False], q <- [True, False]]
  -- to get all combinations of p and q
     where
-        printRow (p,q) = let temp = xor (xor p q) q in putStrLn (show p ++ "\t" ++ show q ++ "\t" ++ show temp ++ "\t\t" ++ show p) 
+        printRow (p,q) = let temp = xor (xor p q) q in putStrLn (show p ++ "|\t" ++ show q ++ "|\t" ++ show temp ++ "|     \t\t" ++ show p) 
 -- stores the value of (p<+>q)<+>q in temp and prints it with p 
 --End of Q5
 
